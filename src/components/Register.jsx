@@ -22,7 +22,7 @@ const Register = () => {
       e.target.reset();
 
       // Redirect to login page (using React Router)
-      window.location.href = `http://localhost:5173/Login`;
+      window.location.href = `/Login`;
     } catch (err) {
       alert("User not registered. Please try again.");
       console.error('Error submitting the form:', err);
