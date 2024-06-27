@@ -19,7 +19,7 @@ const PaymentVerification = () => {
     if (cookie) {
       try {
         const orderIdFromCookie = decodeCookie(cookie);
-        setOrderId(orderIdFromCookie);
+        setOrderId(orderIdFromCookie.objectIdString);
       } catch (error) {
         console.log('Error parsing cookie:', error);
         setOrderId(null);
