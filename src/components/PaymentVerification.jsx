@@ -10,21 +10,31 @@ const { count, setCount } = useContext(CartContext);
   useEffect(() => {
     function getCookie(name) {
       let cookieArr = document.cookie.split(";");
-    
-      for(let i = 0; i < cookieArr.length; i++) {
+  
+      for (let i = 0; i < cookieArr.length; i++) {
         let cookiePair = cookieArr[i].split("=");
-    
-        if(name === cookiePair[0].trim()) {
+  
+        if (name === cookiePair[0].trim()) {
           return decodeURIComponent(cookiePair[1]);
         }
       }
-    
+  
       return null;
     }
-    
+  
     // Use the function to get the 'data' cookie
     let dataCookie = getCookie('data');
-    console.log(dataCookie);  // Prints t
+    if (dataCookie) {
+      try {
+        dataCookie = JSON.parse(dataCookie);
+      } catch (e) {
+        console.error('Error parsing cookie data:', e);
+      }
+    }
+  
+    console.log(dataCookie);  // Prints the value of the 'data' cookie
+  
+    // Further processing of dataCookie if necessary
   }, []);
   useEffect(()=>{
     const fetchCheckout=async()=>{
