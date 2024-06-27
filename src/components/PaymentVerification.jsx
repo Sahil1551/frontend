@@ -27,6 +27,7 @@ const { count, setCount } = useContext(CartContext);
     if (dataCookie) {
       try {
         dataCookie = JSON.parse(dataCookie);
+        setOrderId(dataCookie);
       } catch (e) {
         console.error('Error parsing cookie data:', e);
       }
