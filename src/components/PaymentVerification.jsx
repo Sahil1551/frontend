@@ -5,7 +5,7 @@ import '../index.css';
 
 const PaymentVerification = () => {
   const { count, setCount } = useContext(CartContext);
-  const [orderId, setOrderId] = useState(null); // State to hold the orderId
+  const [orderId, setOrderId] = useState(null); 
   const [CheckOut, setCheckout] = useState({});
 
   useEffect(() => {
@@ -14,16 +14,21 @@ const PaymentVerification = () => {
       return JSON.parse(decodedCookie);
     };
 
-    // Extract the 'data' cookie
-    const cookie = document.cookie.replace(/(?:(?:^|.*;\s*)data\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-    console.log('Raw cookie:', document.cookie); // Log all cookies
-    console.log('Extracted data cookie:', cookie); // Log extracted 'data' cookie
+    const getCookie = (name) => {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(';').shift();
+    };
+
+    const cookie = getCookie('data');
+    console.log('Raw cookie:', document.cookie);
+    console.log('Extracted data cookie:', cookie);
 
     if (cookie) {
       try {
         const orderIdFromCookie = decodeCookie(cookie);
-        console.log('Parsed cookie:', orderIdFromCookie); // Log parsed cookie
-        setOrderId(orderIdFromCookie.objectIdString); // Access objectIdString correctly
+        console.log('Parsed cookie:', orderIdFromCookie);
+        setOrderId(orderIdFromCookie.objectIdString);
       } catch (error) {
         console.log('Error parsing cookie:', error);
         setOrderId(null);
@@ -42,13 +47,13 @@ const PaymentVerification = () => {
   }, [orderId]);
 
   useEffect(() => {
-    const DeleteCart = async () => {
+    const deleteCart = async () => {
       if (CheckOut.cart) {
         const response = await axios.delete(`https://mancots.onrender.com/api/DeleteCart/${CheckOut.cart}`);
         setCount(response.data.cart.products.length);
       }
     };
-    DeleteCart();
+    deleteCart();
   }, [CheckOut]);
 
   return (
