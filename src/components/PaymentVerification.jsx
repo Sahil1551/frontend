@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { CartContext } from './CartContext';
 import '../index.css';
-
+import jwt from 'jsonwebtoken'; 
 const PaymentVerification = () => {
   const { count, setCount } = useContext(CartContext);
   const [orderId, setOrderId] = useState(null); 
@@ -14,19 +14,21 @@ const PaymentVerification = () => {
       const parts = value.split(`; ${name}=`);
       if (parts.length === 2) return parts.pop().split(';').shift();
     };
-    const cookies = document.cookie.replace(/(?:(?:^|.*;\s*)data\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-    console.log("Retrieved cookie content:", cookies);
+
     const cookie = getCookie('data');
     if (cookie) {
       try {
-        const parsedCookie = JSON.parse(decodeURIComponent(cookie));
-        console.log(parsedCookie.objectIdString); // Assuming your cookie structure is { "objectIdString": "value" }
+        // Decode JWT token to get payload
+        const decodedToken = jwt.decode(cookie);
+        console.log('Decoded JWT token:', decodedToken);
+        if (decodedToken) {
+          setOrderId(decodedToken.objectIdString);
+        }
       } catch (error) {
-        console.error('Error parsing cookie:', error);
+        console.error('Error decoding JWT:', error);
       }
     }
   }, []);
-
   console.log('Parsed orderId:', orderId);
   useEffect(() => {
     const fetchCheckout = async () => {
