@@ -24,10 +24,6 @@ const CheckoutForm = ({ isOpen, onRequestClose, cart, price }) => {
       razorpayid: null, 
   razorpaypaymentid: null 
     };
-    useEffect(()=>{
-      const cookies = document.cookie.replace(/(?:(?:^|.*;\s*)data\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-    console.log("Retrieved cookie content:", cookies);
-    })
 
     try {
       const keyResponse = await axios.get(`https://mancots.onrender.com/api/key`);
