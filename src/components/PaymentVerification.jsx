@@ -9,24 +9,15 @@ const { count, setCount } = useContext(CartContext);
   const [CheckOut,setCheckout]=useState({});
   useEffect(() => {
     // Function to decode cookie value
-    const decodeCookie = (cookie) => {
-      const decodedCookie = decodeURIComponent(cookie);
-      return JSON.parse(decodedCookie); // Parse the JSON string to JavaScript object
-    };
-
-    // Read the paymentData cookie
-    const cookie = document.cookie.replace(/(?:(?:^|.*;\s*)paymentData\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-    
-    if (cookie) {
-      try {
-        const orderIdFromCookie = decodeCookie(cookie);
-        setOrderId(orderIdFromCookie);
-        console.log(orderIdFromCookie);
-      } catch (error) {
-        console.error('Error parsing cookie:', error);
-        setOrderId(null); // Handle error case
-      }
-    }
+    fetch('/api/paymentVerifcation')
+    .then(response => {
+      const customDataHeader = response.headers.get('X-Custom-Data');
+      const data = JSON.parse(customDataHeader);
+      console.log('Received custom data:', data);
+    })
+    .catch(error => {
+      console.error('Error fetching data:', error);
+    });
   }, []);
   useEffect(()=>{
     const fetchCheckout=async()=>{
