@@ -9,11 +9,6 @@ const PaymentVerification = () => {
   const [CheckOut, setCheckout] = useState({});
 
   useEffect(() => {
-    const decodeCookie = (cookie) => {
-      const decodedCookie = decodeURIComponent(cookie);
-      return JSON.parse(decodedCookie);
-    };
-
     const getCookie = (name) => {
       const value = `; ${document.cookie}`;
       const parts = value.split(`; ${name}=`);
@@ -21,21 +16,17 @@ const PaymentVerification = () => {
     };
 
     const cookie = getCookie('data');
-    console.log('Raw cookie:', document.cookie);
-    console.log('Extracted data cookie:', cookie);
-
     if (cookie) {
       try {
-        const orderIdFromCookie = decodeCookie(cookie);
-        console.log('Parsed cookie:', orderIdFromCookie);
-        setOrderId(orderIdFromCookie.objectIdString);
+        const parsedCookie = JSON.parse(decodeURIComponent(cookie));
+        setOrderId(parsedCookie.objectIdString); // Assuming your cookie structure is { "objectIdString": "value" }
       } catch (error) {
-        console.log('Error parsing cookie:', error);
-        setOrderId(null);
+        console.error('Error parsing cookie:', error);
       }
     }
   }, []);
 
+  console.log('Parsed orderId:', orderId);
   useEffect(() => {
     const fetchCheckout = async () => {
       if (orderId) {
