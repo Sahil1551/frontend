@@ -13,20 +13,23 @@ const PaymentVerification = () => {
       const decodedCookie = decodeURIComponent(cookie);
       return JSON.parse(decodedCookie);
     };
-  
+
+    // Extract the 'data' cookie
     const cookie = document.cookie.replace(/(?:(?:^|.*;\s*)data\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-  
+    console.log('Raw cookie:', document.cookie); // Log all cookies
+    console.log('Extracted data cookie:', cookie); // Log extracted 'data' cookie
+
     if (cookie) {
       try {
         const orderIdFromCookie = decodeCookie(cookie);
-        setOrderId(orderIdFromCookie.objectIdString);
+        console.log('Parsed cookie:', orderIdFromCookie); // Log parsed cookie
+        setOrderId(orderIdFromCookie.objectIdString); // Access objectIdString correctly
       } catch (error) {
         console.log('Error parsing cookie:', error);
         setOrderId(null);
       }
     }
-    console.log(cookie);
-   }, []);
+  }, []);
 
   useEffect(() => {
     const fetchCheckout = async () => {
