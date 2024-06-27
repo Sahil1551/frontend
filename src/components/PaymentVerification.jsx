@@ -23,7 +23,7 @@ const PaymentVerification = () => {
         const orderIdFromCookie = decodeCookie(cookie);
         setOrderId(orderIdFromCookie);
       } catch (error) {
-        console.error('Error parsing cookie:', error);
+        console.log('Error parsing cookie:', error);
         setOrderId(null); // Handle error case
       }
     }
@@ -35,7 +35,7 @@ const PaymentVerification = () => {
         const response = await axios.get(`https://mancots.onrender.com/api/paymentDetails/${orderId}`);
         setCheckout(response.data);
       } catch (error) {
-        console.error('Error fetching checkout details:', error);
+        console.log('Error fetching checkout details:', error);
         setCheckout({}); // Handle error case or set default state
       }
     };
