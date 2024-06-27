@@ -8,16 +8,23 @@ const { count, setCount } = useContext(CartContext);
   const [orderId, setOrderId] = useState(null); // State to hold the orderId
   const [CheckOut,setCheckout]=useState({});
   useEffect(() => {
-    // Function to decode cookie value
-    fetch('/api/paymentVerifcation')
-    .then(response => {
-      const customDataHeader = response.headers.get('X-Custom-Data');
-      const data = JSON.parse(customDataHeader);
-      console.log('Received custom data:', data);
-    })
-    .catch(error => {
-      console.error('Error fetching data:', error);
-    });
+    function getCookie(name) {
+      let cookieArr = document.cookie.split(";");
+    
+      for(let i = 0; i < cookieArr.length; i++) {
+        let cookiePair = cookieArr[i].split("=");
+    
+        if(name === cookiePair[0].trim()) {
+          return decodeURIComponent(cookiePair[1]);
+        }
+      }
+    
+      return null;
+    }
+    
+    // Use the function to get the 'data' cookie
+    let dataCookie = getCookie('data');
+    console.log(dataCookie);  // Prints t
   }, []);
   useEffect(()=>{
     const fetchCheckout=async()=>{
