@@ -62,6 +62,7 @@ const PaymentVerification = () => {
 
   return (
     <div>
+    
       <div className='cid oswald-bold'>
         <h1>Payment Successful</h1>
         <h3>Order Id: {CheckOut._id}</h3>
