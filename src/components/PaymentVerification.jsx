@@ -15,7 +15,7 @@ const PaymentVerification = () => {
       if (parts.length === 2) return parts.pop().split(';').shift();
     };
 
-    const cookie = getCookie('data');
+    const cookie = getCookie('idi');
     if (cookie) {
       try {
         // Decode JWT token to get payload
