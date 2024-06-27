@@ -21,6 +21,7 @@ const { count, setCount } = useContext(CartContext);
       try {
         const orderIdFromCookie = decodeCookie(cookie);
         setOrderId(orderIdFromCookie);
+        console.log(orderIdFromCookie);
       } catch (error) {
         console.error('Error parsing cookie:', error);
         setOrderId(null); // Handle error case
