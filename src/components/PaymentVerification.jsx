@@ -10,9 +10,9 @@ const PaymentVerification = () => {
 
   useEffect(() => {
     function getCookie(name) {
-      let cookieArr = document.cookie.split(";");
+      const cookieArr = document.cookie.split(';');
       for (let i = 0; i < cookieArr.length; i++) {
-        let cookiePair = cookieArr[i].split("=");
+        const cookiePair = cookieArr[i].split('=');
         if (name === cookiePair[0].trim()) {
           return decodeURIComponent(cookiePair[1]);
         }
@@ -21,17 +21,17 @@ const PaymentVerification = () => {
     }
 
     // Use the function to get the 'data' cookie
-    let dataCookie = getCookie('data');
+    const dataCookie = getCookie('data');
     if (dataCookie) {
       try {
-        const parsedData = JSON.parse(dataCookie);
-        setOrderId(parsedData.objectIdString); // Access the objectIdString from the parsed data
+        const parsedData = JSON.parse(dataCookie); // Store the parsed data in a new variable
+        setOrderId(parsedData.objectIdString); // Directly set the objectIdString to orderId state
       } catch (e) {
         console.error('Error parsing cookie data:', e);
       }
     }
 
-    console.log(dataCookie); // Prints the value of the 'data' cookie
+    console.log('Cookie data:', dataCookie); // Print the raw cookie data
   }, []);
 
   useEffect(() => {
