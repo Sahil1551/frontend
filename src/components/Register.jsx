@@ -22,7 +22,7 @@ const Register = () => {
       e.target.reset();
 
       // Redirect to login page (using React Router)
-      window.location.href = `/Login`;
+      window.location.href = `https://frontend-snowy-pi-75.vercel.app/Login`;
     } catch (err) {
       alert("User not registered. Please try again.");
       console.error('Error submitting the form:', err);
