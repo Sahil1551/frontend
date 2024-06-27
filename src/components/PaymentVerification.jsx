@@ -6,7 +6,25 @@ const PaymentVerification = () => {
   const { count, setCount } = useContext(CartContext);
   const [orderId, setOrderId] = useState(null); 
   const [CheckOut, setCheckout] = useState({});
+// Function to retrieve the value of a specific cookie by name
+function getCookie(name) {
+  const cookies = document.cookie.split(';');
+  for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim();
+      if (cookie.startsWith(name + '=')) {
+          return cookie.substring(name.length + 1);
+      }
+  }
+  return null;
+}
 
+// Log the value of the 'data' cookie
+const dataCookie = getCookie('data');
+if (dataCookie) {
+  console.log('Value of the data cookie:', dataCookie);
+} else {
+  console.log('Data cookie not found.');
+}
   console.log('Parsed orderId:', orderId);
   useEffect(() => {
     const fetchCheckout = async () => {
