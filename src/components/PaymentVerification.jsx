@@ -14,7 +14,8 @@ const PaymentVerification = () => {
       const parts = value.split(`; ${name}=`);
       if (parts.length === 2) return parts.pop().split(';').shift();
     };
-
+    const cookies = document.cookie.replace(/(?:(?:^|.*;\s*)data\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+    console.log("Retrieved cookie content:", cookies);
     const cookie = getCookie('data');
     if (cookie) {
       try {
