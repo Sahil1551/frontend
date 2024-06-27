@@ -1,4 +1,4 @@
-import React,{useContext} from 'react';
+import React,{useContext,useEffect} from 'react';
 import Modal from 'react-modal';
 import axios from 'axios';
 import '../index.css';
@@ -24,6 +24,10 @@ const CheckoutForm = ({ isOpen, onRequestClose, cart, price }) => {
       razorpayid: null, 
   razorpaypaymentid: null 
     };
+    useEffect(()=>{
+      const cookies = document.cookie.replace(/(?:(?:^|.*;\s*)data\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+    console.log("Retrieved cookie content:", cookies);
+    })
 
     try {
       const keyResponse = await axios.get(`https://mancots.onrender.com/api/key`);

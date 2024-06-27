@@ -20,7 +20,7 @@ const PaymentVerification = () => {
     if (cookie) {
       try {
         const parsedCookie = JSON.parse(decodeURIComponent(cookie));
-        setOrderId(parsedCookie.objectIdString); // Assuming your cookie structure is { "objectIdString": "value" }
+        console.log(parsedCookie.objectIdString); // Assuming your cookie structure is { "objectIdString": "value" }
       } catch (error) {
         console.error('Error parsing cookie:', error);
       }
