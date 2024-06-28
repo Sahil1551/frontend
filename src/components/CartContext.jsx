@@ -6,8 +6,8 @@ export const CartProvider = ({ children }) => {
   const [count, setCount] = useState(0);
   const [userId, setUserId] = useState(null);
   const [cartId, setCartId] = useState(null);
-  const [orderId,setOrderId]=useState('');
-
+  const [orderId,setOrderId]=useState(null);
+  console.log(orderId);
   return (
     <CartContext.Provider value={{ orderId,setOrderId,count, setCount, userId, setUserId, cartId, setCartId }}>
       {children}
