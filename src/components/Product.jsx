@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams,Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import '../index.css';
 import { FaSearch } from "react-icons/fa";
 
@@ -9,6 +9,7 @@ const Product = () => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [selectedCategories, setSelectedCategories] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     const fetchCategory = async () => {
@@ -56,32 +57,30 @@ const Product = () => {
     }
     return description;
   };
-  const [searchTerm, setSearchTerm] = useState('');
-  const [results, setResults] = useState([]);
 
   const handleSearch = () => {
-    const filteredResults = data.filter(item =>
-      item.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setResults(filteredResults);
+    // No need to implement anything here, search term is already managed by the input's onChange handler
   };
-  const filteredProducts = products.filter(product =>
-    selectedCategories.length === 0 || selectedCategories.includes(product.category)
+
+  const filteredProducts = products.filter(product => 
+    (selectedCategories.length === 0 || selectedCategories.includes(product.category)) &&
+    product.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
   return (
     <>
       <div className='productMenu'>
         <div className='leftMenu oswald-bold'>
           <div className='input'>
-          <input
-        type="text"
-        placeholder="Search"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
-      <button onClick={handleSearch}>
-        <FaSearch />
-      </button>
+            <input
+              type="text"
+              placeholder="Search"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            <button onClick={handleSearch}>
+              <FaSearch />
+            </button>
           </div>
           <h3>Categories</h3>
           {categories.map((cat) => (
@@ -106,7 +105,7 @@ const Product = () => {
               <h4 className='oswald-bold'>{product.name}</h4>
               <p className='desc'>{truncateDescription(product.description, 40)}</p>
               <p className='oswald-bold'>Rs.{product.price}</p>
-              <Link to={`Order/${product._id}`}><button >View</button></Link>
+              <Link to={`Order/${product._id}`}><button>View</button></Link>
             </div>
           ))}
         </div>
