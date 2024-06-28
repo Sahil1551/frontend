@@ -13,7 +13,7 @@ const Product = () => {
   useEffect(() => {
     const fetchCategory = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/category`);
+        const response = await axios.get(`https://mancots.onrender.com/api/category`);
         setCategories(response.data);
         if (category) {
           const foundCategory = response.data.find(cat => cat.category === category);
