@@ -6,6 +6,7 @@ const PaymentVerification = () => {
   const {orderId, setOrderId, count, setCount } = useContext(CartContext);
   
   const [CheckOut, setCheckout] = useState({});
+  console.log(orderId);
 // Function to retrieve the value of a specific cookie by name
   useEffect(() => {
     const fetchCheckout = async () => {
