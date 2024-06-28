@@ -1,7 +1,9 @@
 import React from 'react';
-const Orders =async()=>{
+const Orders =()=>{
     return(
-    <></>
+    <>
+        
+    </>
     )
 }
 export default Orders

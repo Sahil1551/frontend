@@ -1,7 +1,7 @@
 import React from 'react';
-const Profile =async()=>{
+const Profile =()=>{
     return(
-    <></>
+    <><h1>Hello</h1></>
     )
 }
 export default Profile
