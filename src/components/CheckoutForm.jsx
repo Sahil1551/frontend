@@ -1,12 +1,12 @@
 import React,{useContext,useEffect} from 'react';
 import Modal from 'react-modal';
+import { CartContext } from './CartContext';
 import axios from 'axios';
 import '../index.css';
-import {CartContext} from './CartContext'
 Modal.setAppElement('#root'); // Ensure accessibility
 
 const CheckoutForm = ({ isOpen, onRequestClose, cart, price }) => {
-  const{userId,setUserId,cartId,setCartId}=useContext(CartContext);
+  const{userId,setUserId,cartId,setCartId,orderId,setOrderId}=useContext(CartContext);
   
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,7 +28,7 @@ const CheckoutForm = ({ isOpen, onRequestClose, cart, price }) => {
     try {
       const keyResponse = await axios.get(`https://mancots.onrender.com/api/key`);
       const checkoutResponse = await axios.post(`https://mancots.onrender.com/api/CheckOutdetails`, data);
-      console.log(checkoutResponse.data)
+      setOrderId(checkoutResponse.data.newData._id)
       const { id: order_id } = checkoutResponse.data.order;
 
       const options = {
