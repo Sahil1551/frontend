@@ -3,9 +3,10 @@ import axios from 'axios';
 import { CartContext } from './CartContext';
 import '../index.css';
 const PaymentVerification = () => {
-  const {orderId, setOrderId, count, setCount } = useContext(CartContext);
+  const { count, setCount } = useContext(CartContext);
   
   const [CheckOut, setCheckout] = useState({});
+  const orderId=localStorage.getItem('orderId')
   console.log(orderId);
 // Function to retrieve the value of a specific cookie by name
   useEffect(() => {
