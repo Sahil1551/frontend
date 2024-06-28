@@ -28,7 +28,7 @@ const CheckoutForm = ({ isOpen, onRequestClose, cart, price }) => {
     try {
       const keyResponse = await axios.get(`https://mancots.onrender.com/api/key`);
       const checkoutResponse = await axios.post(`https://mancots.onrender.com/api/CheckOutdetails`, data);
-      setOrderId(checkoutResponse.data.newData._id)
+      console.log(checkoutResponse.data.newData._id)
       const { id: order_id } = checkoutResponse.data.order;
 
       const options = {
