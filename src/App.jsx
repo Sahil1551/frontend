@@ -13,6 +13,8 @@ import Cart from './components/Cart'
 import Order from './components/Order'
 import Header from './components/Header'
 import PaymentVerification from './components/PaymentVerification'
+import Profile from './components/Profile'
+import Orders from './components/Orders'
 function App() {
   
   return (
@@ -20,6 +22,8 @@ function App() {
     <Navbar/>
     <Header/>
     <Routes>
+    
+      <Route path='/Profile'  element={<Profile/>}/>
       <Route path='/' element={<Home/>}/>
       <Route path='/About' element={<About/>}/>
       <Route path='/Product/:category' element={<Product/>}/>
@@ -35,6 +39,8 @@ function App() {
       <Route path='/Order/:id' element={<Order/>}/>
       <Route path='/api/paymentVerification' element={<PaymentVerification/>}/>
       <Route path='*'  element={<Home/>}/>
+      <Route path='/Orders'  element={<Orders/>}/>
+      
     </Routes>
     <Footer/>
     </Router>

@@ -56,7 +56,15 @@ const Product = () => {
     }
     return description;
   };
+  const [searchTerm, setSearchTerm] = useState('');
+  const [results, setResults] = useState([]);
 
+  const handleSearch = () => {
+    const filteredResults = data.filter(item =>
+      item.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setResults(filteredResults);
+  };
   const filteredProducts = products.filter(product =>
     selectedCategories.length === 0 || selectedCategories.includes(product.category)
   );
@@ -65,8 +73,15 @@ const Product = () => {
       <div className='productMenu'>
         <div className='leftMenu oswald-bold'>
           <div className='input'>
-            <input type="text" placeholder='search' />
-            <button><FaSearch /></button>
+          <input
+        type="text"
+        placeholder="Search"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
+      <button onClick={handleSearch}>
+        <FaSearch />
+      </button>
           </div>
           <h3>Categories</h3>
           {categories.map((cat) => (
@@ -86,7 +101,7 @@ const Product = () => {
         </div>
         <div className='productList '>
           {filteredProducts.map(product => (
-            <div key={product._id} className='productItem'>
+            <div key={product._id} id={product.name} className='productItem'>
               <img src={product.images[0]} alt={product.name} />
               <h4 className='oswald-bold'>{product.name}</h4>
               <p className='desc'>{truncateDescription(product.description, 40)}</p>
