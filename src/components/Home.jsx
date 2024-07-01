@@ -29,7 +29,7 @@ const Home = () => {
       <Cards />
       <div className='containers'>
         <h1 className='oswald-bold'>New Drops</h1>
-        <div className='container'>
+        <div className='container oswald-bold'>
           {  products.filter(product => product.news === true).map((product) => (
             
             <div className='product-Cards' key={product._id}>
