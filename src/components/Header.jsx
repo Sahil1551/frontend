@@ -66,7 +66,7 @@ const Header = () => {
   
 
   return (
-    <div className="header oswald-bold">
+    <div className="header oswald-bolds">
       {user ? (
         <>
           <h5>Welcome, {user.name}</h5>

@@ -1,5 +1,6 @@
 import React from 'react'
-import '../index.css'
+import '../index.css';
+import './navbar.css';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import Carousel1 from '/2024.png';

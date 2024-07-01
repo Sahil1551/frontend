@@ -13,7 +13,7 @@ const Navbar = () => {
   
   return (
     <>
-        <div className='navbar oswald-bold'>
+        <div className='navbar oswald-bolds'>
             <Link to="/" className='Link'><h2>mancot <h6>mens clothing</h6></h2></Link> 
             <div className='ele'>
             <Link className='About' to='/About'><h2>About Us</h2></Link>
