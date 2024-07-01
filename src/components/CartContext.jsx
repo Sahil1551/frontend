@@ -10,9 +10,8 @@ export const CartProvider = ({ children }) => {
   useEffect(() => {
     if (orderId) {
       localStorage.setItem('orderId', orderId);
-    } else {
-      localStorage.removeItem('orderId');
-    }
+      console.log(orderId);
+    } 
   }, [orderId]);
   return (
     <CartContext.Provider value={{ orderId,setOrderId,count, setCount, userId, setUserId, cartId, setCartId }}>
