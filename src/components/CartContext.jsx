@@ -10,7 +10,7 @@ export const CartProvider = ({ children }) => {
   useEffect(() => {
     if (orderId) {
       localStorage.setItem('orderId', orderId);
-      console.log(orderId);
+      
     } 
   }, [orderId]);
   return (

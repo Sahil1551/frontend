@@ -7,13 +7,14 @@ const PaymentVerification = () => {
   
   const [CheckOut, setCheckout] = useState({});
   const orderId=localStorage.getItem('orderId')
-  console.log(orderId);
+  
 // Function to retrieve the value of a specific cookie by name
   useEffect(() => {
     const fetchCheckout = async () => {
       if (orderId) {
         const response = await axios.get(`https://backend-delta-topaz.vercel.app/api/paymentDetails/${orderId}`);
         setCheckout(response.data);
+        localStorage.removeItem('orderId')
       }
     };
     fetchCheckout();
