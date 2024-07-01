@@ -8,7 +8,7 @@ const ProductCategory = () =>{
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(`https://mancots.onrender.com/api/products/category/${category}`);
+        const response = await axios.get(`https://backend-delta-topaz.vercel.app/api/products/category/${category}`);
         setproduct(response.data.Products || []); // Assuming the response data contains the products array
       } catch (error) {
         console.error('Error fetching products:', error);

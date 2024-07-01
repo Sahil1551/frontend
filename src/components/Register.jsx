@@ -16,7 +16,7 @@ const Register = () => {
       };
 
       // Make POST request to register user
-      const response = await axios.post(`https://mancots.onrender.com/user/register`, userData);
+      const response = await axios.post(`https://backend-delta-topaz.vercel.app/user/register`, userData);
       
       // Reset the form after successful submission
       e.target.reset();

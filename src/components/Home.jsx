@@ -11,7 +11,7 @@ const Home = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(`https://mancots.onrender.com/api/products`);
+        const response = await axios.get(`https://backend-delta-topaz.vercel.app/api/products`);
         
         setProducts(response.data.Products || []);
       } catch (error) {

@@ -26,8 +26,8 @@ const CheckoutForm = ({ isOpen, onRequestClose, cart, price }) => {
     };
 
     try {
-      const keyResponse = await axios.get(`https://mancots.onrender.com/api/key`);
-      const checkoutResponse = await axios.post(`https://mancots.onrender.com/api/CheckOutdetails`, data);
+      const keyResponse = await axios.get(`https://backend-delta-topaz.vercel.app/api/key`);
+      const checkoutResponse = await axios.post(`https://backend-delta-topaz.vercel.app/api/CheckOutdetails`, data);
       setOrderId(checkoutResponse.data.newData._id)
       const { id: order_id } = checkoutResponse.data.order;
 
@@ -39,7 +39,7 @@ const CheckoutForm = ({ isOpen, onRequestClose, cart, price }) => {
         description: "Test Transaction",
         image: "http://example.com/your_logo",
         order_id: order_id, // Order ID obtained in the response of Step 1
-        callback_url: `https://mancots.onrender.com/api/paymentVerifcation`,
+        callback_url: `https://backend-delta-topaz.vercel.app/api/paymentVerifcation`,
         prefill: {
           name: data.name,
           email: data.email,

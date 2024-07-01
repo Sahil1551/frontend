@@ -15,7 +15,7 @@ const Header = () => {
     const fetchUserData = async () => {
       try {
         if (accessToken) {
-          const response = await axios.get(`https://mancots.onrender.com/user/info`, {
+          const response = await axios.get(`https://backend-delta-topaz.vercel.app/user/info`, {
             headers: {
               Authorization: `Bearer ${accessToken}`,
             },
@@ -38,7 +38,7 @@ const Header = () => {
     const fetchCart = async () => {
       try {
         if (user && user._id) {
-          const response = await axios.get(`https://mancots.onrender.com/api/addToCart/${user._id}`);
+          const response = await axios.get(`https://backend-delta-topaz.vercel.app/api/addToCart/${user._id}`);
           setCount(response.data.products.length); // Update count based on fetched cart data
         }
       } catch (error) {
@@ -53,7 +53,7 @@ const Header = () => {
 
   const handleLogout = async () => {
     try {
-      await axios.get(`https://mancots.onrender.com/user/logout`); 
+      await axios.get(`https://backend-delta-topaz.vercel.app/user/logout`); 
       localStorage.removeItem('accesstoken');
       setUser(null);
       setCount(0); 

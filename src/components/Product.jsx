@@ -14,7 +14,7 @@ const Product = () => {
   useEffect(() => {
     const fetchCategory = async () => {
       try {
-        const response = await axios.get(`https://mancots.onrender.com/api/category`);
+        const response = await axios.get(`https://backend-delta-topaz.vercel.app/api/category`);
         setCategories(response.data);
         if (category) {
           const foundCategory = response.data.find(cat => cat.category === category);
@@ -29,7 +29,7 @@ const Product = () => {
 
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(`https://mancots.onrender.com/api/products`);
+        const response = await axios.get(`https://backend-delta-topaz.vercel.app/api/products`);
         setProducts(response.data.Products || []);
       } catch (err) {
         console.error(err);

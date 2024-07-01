@@ -11,7 +11,7 @@ const Order = () => {
     const [product,setProduct]=useState([]);
     useEffect(()=>{
         const fetchProduct=async()=>{
-            const response=await axios.get(`https://mancots.onrender.com/api/products/${id}`)
+            const response=await axios.get(`https://backend-delta-topaz.vercel.app/api/products/${id}`)
             setProduct(response.data)
         }
         fetchProduct();
@@ -20,13 +20,13 @@ const Order = () => {
         const accesstoken=localStorage.getItem('accesstoken')
         if(accesstoken){
                 
-                const r=await axios.get(`https://mancots.onrender.com/user/info`,{
+                const r=await axios.get(`https://backend-delta-topaz.vercel.app/user/info`,{
                         headers: {
                             Authorization: `Bearer ${accesstoken}`,
                    },
                        
                 });
-                const respnse=await axios.get(`https://mancots.onrender.com/api/products/${id}`)
+                const respnse=await axios.get(`https://backend-delta-topaz.vercel.app/api/products/${id}`)
                 
                 setUser(r.data);
 
@@ -35,7 +35,7 @@ const Order = () => {
                     product: ProductId, 
                     quantity: c,
                   };
-                  const response=await axios.post(`https://mancots.onrender.com/api/addToCart`,cartData);
+                  const response=await axios.post(`https://backend-delta-topaz.vercel.app/api/addToCart`,cartData);
                   setCount(response.data.products.length)
         }else{
             alert("Please login before Adding to Cart or Buying")

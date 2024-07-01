@@ -12,7 +12,7 @@ const PaymentVerification = () => {
   useEffect(() => {
     const fetchCheckout = async () => {
       if (orderId) {
-        const response = await axios.get(`https://mancots.onrender.com/api/paymentDetails/${orderId}`);
+        const response = await axios.get(`https://backend-delta-topaz.vercel.app/api/paymentDetails/${orderId}`);
         setCheckout(response.data);
       }
     };
@@ -22,7 +22,7 @@ const PaymentVerification = () => {
   useEffect(() => {
     const deleteCart = async () => {
       if (CheckOut.cart) {
-        const response = await axios.delete(`https://mancots.onrender.com/api/DeleteCart/${CheckOut.cart}`);
+        const response = await axios.delete(`https://backend-delta-topaz.vercel.app/api/DeleteCart/${CheckOut.cart}`);
         setCount(response.data.cart.products.length);
       }
     };
